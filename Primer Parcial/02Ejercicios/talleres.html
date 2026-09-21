@@ -1,38 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicios con Node</title>
+    <title>Ejercicios con JavaScript</title>
     <link rel="stylesheet" href="">
 </head>
 <body>
     <header>
-        <h1>Ejercicios con node</h1>
+        <h1>Ejercicios con Node</h1>
     </header>
     <main>
+        //EJERCICIO 01:
         <section class="ejercicios">
-            <h2 id="titulo-arreglos"> Arreglos del codigo <code>01-arreglos.js</code></h2>
+            <h2 id="titulo-arreglos"> Arreglos del código <code>01-arreglos.js</code></h2>
             <p>Datos de prueba con JS</p>
             <div class="tabla-scroll">
                 <table id="tabla-talleres"> 
                     <thead>
                         <tr>
                             <th>nombre</th>
-                            <th>instrcutor</th>
+                            <th>instructor</th>
                             <th>cupo</th>
                             <th>inscritos</th>
                         </tr>
                     </thead>
-                    <tbody>
-
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
 
             <form id="form-arreglos" class="formulario">
                 <div class="campos">
-                    <label for="operacion-arreglo" name="operacion-arreglo">Operacion</label>
+                    <label for="operacion-arreglo">Operación</label>
                     <select name="operacion-arreglo" id="operacion-arreglo">
                         <option value="forEach">ForEach - Lista Simple</option>
                         <option value="map">map - Copia solo Nombres</option>
@@ -40,14 +39,57 @@
                         <option value="find">find - Buscar por el nombre del instructor</option>
                     </select>
                 </div>
-
                 <button type="submit">Ejecutar</button>
-
             </form>
 
-            <output class="resultado" id="resultado-arreglo" for="form arreglo"></output>
+            <output class="resultado" id="resultado-arreglo" for="form-arreglos"></output>
+        </section>
+
+        //EJERCICIO 02: 
+        <section class="ejercicios">
+            <h2 id="titulo-objetos"> Objetos y JSON del código <code>02-objetos-json.js</code></h2>
+            <form id="form-objetos" class="formulario">
+                <div class="campos">
+                    <label for="operacion-objeto">Operación</label>
+                    <select name="operacion-objeto" id="operacion-objeto">
+                        <option value="keys">Object.keys - Nombres de propiedades</option>
+                        <option value="values">Object.values - Valores de propiedades</option>
+                        <option value="entries">Object.entries - Recorrer llaves y valores</option>
+                        <option value="stringify">JSON.stringify - Convertir a Texto</option>
+                        <option value="parse">JSON.parse - Convertir a Objeto (Nombre)</option>
+                    </select>
+                </div>
+                <button type="submit">Ejecutar</button>
+            </form>
+
+            <output class="resultado" id="resultado-objeto" for="form-objetos"></output>
+        </section>
+
+        //EJERCICIO 03
+        <section class="ejercicios">
+            <h2 id="titulo-strings"> Strings y Fechas del código <code>03-strings-fechas.js</code></h2>
+            <form id="form-strings" class="formulario">
+                <div class="campos">
+                    <label for="operacion-string">Operación</label>
+                    <select name="operacion-string" id="operacion-string">
+                        <option value="trim">trim - Quitar espacios</option>
+                        <option value="split">split - Separar en arreglo</option>
+                        <option value="includes">includes - Validar correo con @</option>
+                        <option value="replace">replace / replaceAll - Cambiar / por -</option>
+                        <option value="template">template literals - Mensaje de inscripción</option>
+                        <option value="diferenciaFechas">Date - Calcular diferencia de días contra hoy</option>
+                    </select>
+                </div>
+                <button type="submit">Ejecutar</button>
+            </form>
+
+            <output class="resultado" id="resultado-string" for="form-strings"></output>
         </section>
     </main>
+    <p>Presiona para volver al index principal <a href="../../index.html">aqui</a></p>
+    <footer>
+        <p>Para Mejor contacto venga a la Batiz</p>
+    </footer>
     <script src="./js/app.js"></script>
 </body>
 </html>
