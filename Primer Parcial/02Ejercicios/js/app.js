@@ -55,3 +55,44 @@ if (formArreglos) {
     });
 }
 
+const taller = {
+  nombre: 'Introducción a Python',
+  instructor: 'Ing. María López',
+  cupo: 25,
+  inscritos: 25,
+};
+
+const formObjetos = document.getElementById('form-objetos');
+const resultadoObjetos = document.getElementById('resultado-objeto');
+const selectOperacionObjeto = document.getElementById('operacion-objeto');
+
+if (formObjetos) {
+    formObjetos.addEventListener('submit', (evento) => {
+        evento.preventDefault();
+        const operacion = selectOperacionObjeto.value;
+        let resultado;
+
+        switch(operacion) {
+            case 'keys':
+                resultado = Object.keys(taller).join(', ');
+                break;
+            case 'values':
+                resultado = Object.values(taller).join(', ');
+                break;
+            case 'entries':
+                resultado = Object.entries(taller).map(([clave, valor]) => `${clave}: ${valor}`).join(' | ');
+                break;
+            case 'stringify':
+                
+                resultado = JSON.stringify(taller);
+                break;
+            case 'parse':
+                const textoJson = JSON.stringify(taller);
+                const objetoDeVuelta = JSON.parse(textoJson);
+                resultado = `Nombre desde el objeto reconstruido: ${objetoDeVuelta.nombre}`;
+                break;
+        }
+
+        if (resultadoObjetos) resultadoObjetos.textContent = resultado;
+    });
+}

@@ -45,6 +45,28 @@
 
             <output class="resultado" id="resultado-arreglo" for="form-arreglos"></output>
         </section>
+
+        <section class="ejercicios">
+    <h2 id="titulo-objetos">Objetos del código </h2>
+    <p>Operaciones con Object y JSON</p>
+
+    <form id="form-objetos" class="formulario">
+        <div class="campos">
+            <label for="operacion-objeto">Operación</label>
+            <select name="operacion-objeto" id="operacion-objeto">
+                <option value="keys">Object.keys - Solo Nombres de Propiedades</option>
+                <option value="values">Object.values - Solo Valores</option>
+                <option value="entries">Object.entries - Propiedad: Valor</option>
+                <option value="stringify">JSON.stringify - Convertir a Texto</option>
+                <option value="parse">JSON.parse - Texto a Objeto (Extraer nombre)</option>
+            </select>
+        </div>
+        
+        <button type="submit">Ejecutar</button>
+    </form>
+    
+    <output class="resultado" id="resultado-objeto" for="form-objetos"></output>
+</section>
     </main>
     <p>Presiona para volver al index principal <a href="../../index.html">aqui</a></p>
     <footer>
