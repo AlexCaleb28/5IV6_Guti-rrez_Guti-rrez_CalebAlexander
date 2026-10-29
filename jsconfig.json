@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": "."
+  },
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*",
+    "Segundo Parcial/MiniProyecto/mini-proyecto-next/.next"
+  ]
+}

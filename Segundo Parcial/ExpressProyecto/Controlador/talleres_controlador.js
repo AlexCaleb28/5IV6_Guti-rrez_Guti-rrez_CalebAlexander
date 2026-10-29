@@ -1,4 +1,4 @@
-const TalleresModelo = require('../Modelo/talleres');
+const TalleresModelo = require('../Modelos/talleres');
 
 async function obtenerTalleres(req, res) {
     try {

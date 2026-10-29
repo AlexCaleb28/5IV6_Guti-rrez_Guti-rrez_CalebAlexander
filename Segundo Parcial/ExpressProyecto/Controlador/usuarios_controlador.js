@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const usuariosModel = require('../Modelo/usuarios');
+const usuariosModel = require('../Modelos/usuarios');
 
 function esDuplicado(error) {
     return error.code === 'ER_DUP_ENTRY' || error.code === '23505';

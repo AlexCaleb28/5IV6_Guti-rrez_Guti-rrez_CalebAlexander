@@ -1,4 +1,4 @@
-const AsistenciaModelo = require('../Modelo/asistencia');
+const AsistenciaModelo = require('../Modelos/asistencia');
 
 async function obtenerAsistencias(req, res) {
     try {
