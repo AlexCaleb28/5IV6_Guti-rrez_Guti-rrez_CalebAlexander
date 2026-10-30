@@ -5,7 +5,6 @@ function esDuplicado(error) {
     return error.code === 'ER_DUP_ENTRY' || error.code === '23505';
 }
 
-
 async function obtenerUsuarios(req, res) {
     try {
         const usuarios = await usuariosModel.listar();
@@ -14,7 +13,6 @@ async function obtenerUsuarios(req, res) {
         res.status(500).json({ error: error.message });
     }
 }
-
 
 async function obtenerUsuario(req, res) {
     try {
@@ -26,22 +24,18 @@ async function obtenerUsuario(req, res) {
     }
 }
 
-
 async function crearUsuario(req, res) {
     try {
         const { nombre, correo, contrasena, boleta } = req.body;
         
-        
         if (!nombre || !correo || !contrasena || !boleta) {
-            return res.status(400).json({ error: 'Faltan datos obligatorios' });
+            return res.status(400).json({ error: 'nombre, correo, contrasena y boleta son obligatorios' });
         }
 
-        
-        if (contrasena.length < 6) {
-            return res.status(400).json({ error: 'La contraseña debe tener al menos 6 caracteres' });
+        if (contrasena.length < 8) {
+            return res.status(400).json({ error: 'La contraseña debe tener al menos 8 caracteres' });
         }
         
-       
         const contrasenaHash = await bcrypt.hash(contrasena, 10);
         
         const nuevoUsuario = await usuariosModel.crear({ 
@@ -55,13 +49,34 @@ async function crearUsuario(req, res) {
         res.status(201).json(nuevoUsuario);
     } catch (error) {
         if (esDuplicado(error)) {
-            return res.status(400).json({ error: 'El correo o la boleta ya están registrados' });
+            return res.status(409).json({ error: 'Ya existe un usuario con ese correo o boleta' });
         }
         res.status(500).json({ error: error.message });
     }
 }
 
+async function actualizarUsuario(req, res) {
+    try {
+        const { id } = req.params;
+        const { nombre, correo, rol } = req.body;
 
+        if (!nombre && !correo && !rol) {
+            return res.status(400).json({ error: 'Envía al menos uno de: nombre, correo, rol' });
+        }
+
+        const usuarioActualizado = await usuariosModel.actualizar(id, req.body);
+        if (!usuarioActualizado) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+
+        res.json(usuarioActualizado);
+    } catch (error) {
+        if (esDuplicado(error)) {
+            return res.status(409).json({ error: 'Ya existe un usuario con ese correo' });
+        }
+        res.status(500).json({ error: error.message });
+    }
+}
 
 async function eliminarUsuario(req, res) {
     try {
@@ -73,10 +88,10 @@ async function eliminarUsuario(req, res) {
     }
 }
 
-
 module.exports = {
     obtenerUsuarios,
     obtenerUsuario,
     crearUsuario,
+    actualizarUsuario,
     eliminarUsuario
 };

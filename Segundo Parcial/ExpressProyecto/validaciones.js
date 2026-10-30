@@ -1,28 +1,35 @@
-//vamos atener funciones que se encargan de validar correo, boleta y contraseña
-
-//wiii mas tarea siiiii
-
-//aqui va funcion de correo
-function validarCorreo(correo){
-    if (typeof correo !== 'string') return false;
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(correo);
-
+function validarBoleta(boleta) {
+  const v = boleta === undefined || boleta === null ? '' : String(boleta).trim();
+  if (!v) return 'La boleta es obligatoria.';
+  if (!/^[0-9]{10}$/.test(v)) return 'La boleta debe tener exactamente 10 dígitos numéricos.';
+  return null;
 }
 
-//aqui va funcion de boleta
-function validarBoleta(boleta){
-    if (typeof boleta !== 'string') return false;
-    const regex = /^\d{8}$/;
-    return regex.test(boleta);
+function validarNombre(nombre) {
+  const v = typeof nombre === 'string' ? nombre.trim() : '';
+  if (!v) return 'El nombre es obligatorio.';
+  if (v.length < 3) return 'El nombre debe tener al menos 3 caracteres.';
+  if (v.length > 100) return 'El nombre no puede pasar de 100 caracteres.';
+  return null;
 }
 
-
-
-function validarContrasena(contrasena){
-    if (typeof contrasena !== 'string') return false;
-    return contrasena.length >= 8;
+function validarCorreo(correo) {
+  const v = typeof correo === 'string' ? correo.trim() : '';
+  if (!v) return 'El correo es obligatorio.';
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return 'El formato del correo no es válido.';
+  return null;
 }
 
-module.exports = {
-    validarCorreo, validarBoleta, validarContrasena};
+function validarCupo(cupo) {
+  const n = Number(cupo);
+  if (!Number.isInteger(n) || n < 1 || n > 500) return 'El cupo debe ser un número entero entre 1 y 500.';
+  return null;
+}
+
+// 2026010101 -> 2026******
+function ocultarBoleta(boleta) {
+  if (!boleta || String(boleta).length < 4) return '****';
+  return String(boleta).slice(0, 4) + '******';
+}
+
+module.exports = { validarBoleta, validarNombre, validarCorreo, validarCupo, ocultarBoleta };

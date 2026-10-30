@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi perfil</title>
+  <link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body>
+  <!-- Contenedor donde comun.js inyectará automáticamente el menú de navegación -->
+  <nav id="nav"></nav>
+
+  <main>
+    <h1>Mi perfil</h1>
+    <form id="form" class="formulario">
+      <input id="boleta" type="text" inputmode="numeric" maxlength="10"
+             placeholder="Tu boleta (10 dígitos)" aria-label="Tu boleta">
+      <button id="boton" type="submit">Ver mi perfil</button>
+    </form>
+    <p id="error" class="error" hidden></p>
+    <div id="resultado"></div>
+  </main>
+
+  <!-- Scripts en el orden correcto -->
+  <script src="/js/comun.js"></script>
+  <script src="/js/asistencia.js"></script>
+  <script>
+    // Asegura que el menú se pinte en cuanto cargue la página
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof pintarNav === 'function') {
+        pintarNav();
+      }
+    });
+  </script>
+</body>
+</html>
