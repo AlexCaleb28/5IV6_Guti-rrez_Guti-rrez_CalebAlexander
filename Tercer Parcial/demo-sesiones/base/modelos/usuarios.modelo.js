@@ -5,17 +5,27 @@ function crearModeloUsuarios(pool) {
   // Regresa el usuario (sin el hash) si la contraseña es correcta, o null si no.
   async function verificar(usuario, contrasena) {
     const [filas] = await pool.query(
-      'SELECT id, usuario, nombre, rol, contrasena_hash FROM usuarios WHERE usuario = ?',
-      [String(usuario || '')]
+      'SELECT id, usuario, nombre, rol, contrasena_hash FROM usuarios WHERE usuario = ? LIMIT 1',
+      [usuario],
     );
-    if (filas.length === 0) return null;
+
+    if (!filas || filas.length === 0) {
+      return null;
+    }
 
     const fila = filas[0];
-    const correcta = await bcrypt.compare(String(contrasena || ''), fila.contrasena_hash);
-    if (!correcta) return null;
+    const coincide = await bcrypt.compare(contrasena, fila.contrasena_hash);
 
-    const { contrasena_hash, ...sinHash } = fila;
-    return sinHash;
+    if (!coincide) {
+      return null;
+    }
+
+    return {
+      id: fila.id,
+      usuario: fila.usuario,
+      nombre: fila.nombre,
+      rol: fila.rol,
+    };
   }
 
   return { verificar };
